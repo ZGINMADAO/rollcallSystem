@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>503</title>
+	<style>
+		body{
+			position: relative;
+			margin:0;
+			cursor: default;
+			moz-user-select: -moz-none;
+			-moz-user-select: none;
+			-o-user-select:none;
+			-khtml-user-select:none;
+			-webkit-user-select:none;
+			-ms-user-select:none;
+			user-select:none;
+			background: #f5f5f5;
+		}
+		body,input{
+			font-family: "Microsoft Yahei","Arial";
+		}
+		:focus{
+			outline:none;
+		}
+		a{
+			*noFocusLine: expression(this.onFocus=this.blur());
+		}
+		.ico{
+			height: 180px;
+			width: 200px;
+			margin: -110px auto;
+			position: relative;
+			top: 220px;
+		}
+		.errcode{
+			position: relative;
+			top: 80px;
+			font-size: 48px;
+			text-align: center;
+			color: #676d75;
+		}
+		input{
+			background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAAsCAYAAABIUrd3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkYyN0Q1OTFBQzYyRDExRTQ4RTdBRkIxODMyQjYxRDZBIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkYyN0Q1OTFCQzYyRDExRTQ4RTdBRkIxODMyQjYxRDZBIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RjI3RDU5MThDNjJEMTFFNDhFN0FGQjE4MzJCNjFENkEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RjI3RDU5MTlDNjJEMTFFNDhFN0FGQjE4MzJCNjFENkEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz65MSj8AAADMUlEQVR42uyc3UtTcRjHnzO3NXEjK017gV6JwoaWdRGRSPUH2MsEI4puqpu606g/IMLupMDbboJckSVUF0YQXWZqvtyUaWKsEctJWxs7e+l5jjPG+O3G09xxfT/wZbpzdn7wfPb7nXPE82iZTIZyuXq9S16cnLZsjnA2Z98D1ibCmeMMc55ynvX2dCfyd7IpPniKM8F5xOngbIfwVYObszfrrU888iQ+nb+TtjTTeWMFv9zmdKF2ZUc35xbP+pT8Ys/ZAOHly5LXG39nOs/ys/yz3/TaUlVFJ4+3kLdhH9VtrCG73Y5yrwDJZJK+B3/Q2MRk6vWbdxSJRisK7Orj2f5Yu3KtU87XU5ytZgY+0OSlCx0+qqx0wUIJicfj9OChn4ZHxlSbv3F2yoWc718Iv3zpPIRbAJfLZbgQJwq2cNpt2duyZeNxV9HFcz7SNA0VtwjiQpx4PG7V5jaRftjMAK0tR41vF7DejD/Reky16ZBIrzdz8EZvAypsUeSCWsEmkb7GzIHr62pRXYtSp3bjtJk9MG7LrIu9Qn3nZkNp/j8gHdIBpANIB5AOIB1AOoB0AOkA0gGkA0gHkA4gHUA6gHRQBOn5D0AC65BOp4sjPZFIoLoWRdf14kiPRqOorkUp5Ma09HA4XHAZAaVd2sVN0Zb3YDCIKlsMcSLPtRWS/svMwX/OhykSiVAgEMCMt8gMFxfiJLygVJuQf1oPcDzLHWRq+ivV1mwwBonFYlRdXU1ut5scDgeeb1tB0XLRJudwWdJTKaP3AH2ZmVXtHhDpHzl7ljvg8OgkHWzcT06n0xgsFAoZAaVFTrsfRsZVm97L8t5v5uC/eXa/GnyLKlsMcSJuFPSLdOlAMWdmgE9T0zTwcpC/XTqqXfIZrtPzF4OGEwXSlMC/1H5EGhP0mR1QmhI0N3lp145ttH7dWrLZ8FfelUDXkzQfXqDpmdnM0Oh4OhaLF2o/0t7b0+3P7S4lHYg6UcKy5S4L78q/T7/JuYfalCX3s34NNEXHyDP8coezG7Va9XwW2dJRKvdN1cPlTzgDtNiASLpHNtNigxoHamj903v2Ym2IFtuE+lVtQv8IMAAJFBASxwseXgAAAABJRU5ErkJggg==) no-repeat;
+			height: 44px;
+			width: 125px;
+			font-size: 16px;
+			color: #676d75;
+			border: none;
+			text-align: center;
+			cursor: pointer;
+			margin: 0 10px;
+		}
+		.btnarea{
+			position: relative;
+			top: 260px;
+			text-align: center;
+		}
+		.info{
+			font-size: 16px;
+			color: #676d75;
+			position: relative;
+			top: 200px;
+			width: 500px;
+			margin: 0 auto;
+			line-height: 28px;
+		}
+		.info a{
+			color: #676d75;
+		}
+
+		.info a:visited{
+			color: #676d75;
+		}
+		.info a:hover{
+			color: #999;
+		}
+p a{ text-align:center; display:inline-block; font-size:14px;}
+	</style>
+</head>
+<body>
+	<div class="errcode">
+		<span>- -! 浏览器版本太低</span>
+	</div>
+	<div class="info">
+		<p>您使用的是非常古老的浏览器或者是国内某双核浏览器，本系统已经不再支持，为了您以后有更好的浏览体验，请不要再使用此浏览器，升级您的浏览器，或更换其它浏览器。</p>
+		<p>我们建议您用以下新版浏览器进行访问：<p>
+		<p>
+           <a href="http://rj.baidu.com/soft/detail/11843.html"><img src="http://img5sw.baidu.com/soft/51/11843/559c941cd511c5d2775fe5bef8e49bdc.png?version=3419768765"><br>火狐浏览器</a>
+           <a href="http://rj.baidu.com/soft/detail/14744.html"><img src="http://img5sw.baidu.com/soft/9d/14744/8abc6949cfde3452f54d2219bd167d35.png?version=2095063176"><br>谷歌浏览器</a>
+           <a href="http://rj.baidu.com/soft/detail/14754.html"><img src="http://img5sw.baidu.com/soft/0d/14754/b188e7627eb8d31f71006aa609f7e468.png?version=1960594781"><br>搜狗高速浏览器</a>
+           <a href="http://rj.baidu.com/soft/detail/11339.html"><img src="http://img5sw.baidu.com/soft/42/16490/cd6dda181735e3d4a097c3b2fddf962d.png?version=266620128"><br>QQ浏览器</a>
+           <a href="http://rj.baidu.com/soft/detail/14917.html"><img src="http://img5sw.baidu.com/soft/9e/14917/d0b2568ebbaa6236fdf38e14950075b8.png?version=3474208079"><br>IE11</a>......
+        </p>
+          
+	</div>
+</body>
+</html>

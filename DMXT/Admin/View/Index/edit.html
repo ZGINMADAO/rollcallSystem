@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    
+<link type="text/css" href="__PUBLIC__/css/style.css" rel="stylesheet" />
+<script src="__PUBLIC__/js/jquery-1.9.1.min.js" language="javascript"></script>
+<!-- <script type="text/javascript" src="__PUBLIC__/js/default.js"></script> -->
+
+</head>
+
+<style type="text/css">
+.mainfrom{ 
+    width:400px;
+	padding-left:100px;
+	padding-top:50px;
+	overflow:hidden;
+	}
+.textfrom{ 
+    height:40px;
+	overflow:hidden;
+	font-size:14px;
+	padding:10px;
+	}
+.textfrom .remind{ 
+   width:100px;
+   height:40px;
+   line-height:24px;
+   text-align:right;
+   float:left;
+   }
+.textfrom .inputfrom{
+	float:left;
+	} 
+.textfrom .inputfrom input.A_text{ padding-left:5px;}
+.btnfrom{ text-align:center;}
+</style>
+
+<body>
+
+<div class="main">
+  <h3>账户管理</h3>
+     
+    <div class="mainfrom">
+	<form method="post" action="{:U('Index/edit')}">
+       <div class="textfrom">
+       <!-- 用户名 密码只能输入英文数字 -->
+         <div class="remind">请输入用户名：</div>
+         <div class="inputfrom"><input type="text" id="user" class="A_text" name="tea_no" onkeyup="value=value.replace(/[\W]/g,'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"/></div>
+       </div>
+       <div class="textfrom">
+		 <div class="remind">旧密码：</div>
+         <div class="inputfrom"><input type="password" id="pwd" class="A_text" name="pwd" onkeyup="value=value.replace(/[\W]/g,'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"/></div>
+       </div>
+       <div class="textfrom">
+		 <div class="remind">新密码：</div>
+         <div class="inputfrom"><input type="password" id="newpwd" class="A_text" name="new_pwd" onkeyup="value=value.replace(/[\W]/g,'') "onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"/></div>
+       </div>
+       <div class="textfrom btnfrom">
+		<input class="A_btn" type="submit" onclick="return checkform()" value="保存"/>
+       </div>
+	</form>
+    </div>
+    
+</div>
+<script type="text/javascript">
+function checkform() {
+  if ($("#user").val().length<5) {
+    alert('请输入用户名,用户名不少于五位！');
+    $("#user").focus();
+    return false;
+  }
+  if ($("#pwd").val().length<5) {
+    alert('请输入密码，密码不少于五位！');
+    $("#pwd").focus();
+    return false;
+  }
+  if ($("#newpwd").val().length<5) {
+    alert('请输入新密码，新密码不少于五位！');
+    $("#newpwd").focus();
+    return false;
+  }
+  return true;
+}
+</script>
+</body>
+</html>

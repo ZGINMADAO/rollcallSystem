@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+  
+</head>
+<link type="text/css" href="__PUBLIC__/css/style.css" rel="stylesheet" />
+<style type="text/css">
+.dm_list li.n0{ width:15%;}	
+.dm_list li.n1{ width:10%;}	
+.dm_list li.n2{ width:15%;}	
+.dm_list li.n3{ width:20%;}		
+.dm_list li.n4{ width:20%;}		
+.dm_list li.n5{ width:20%;}		
+
+</style>
+<body>
+
+<div class="main">
+  <h3>学生上课记录</h3>
+  <div class="dm_main">
+    <div class="dm_content">
+       <div class="dm_list">
+           <ul class="dm_bt">
+           	 <li class="n0">教&nbsp;师</li>
+             <li class="n1">班&nbsp;级</li>
+             <li class="n2">姓&nbsp;名</li>
+             <li class="n3">已&nbsp;到</li> 
+             <li class="n4">请&nbsp;假</li>
+             <li class="n5">旷&nbsp;课</li>
+           </ul>
+           <volist name="stuStaDeatil" id="val">
+           <ul class="dm_nrli">
+           	 <li class="n0">{$val.teacher_name}</li>
+             <li class="n1">{$val.class_name}</li>
+             <li class="n2">{$val.stu_name}</li>
+             <li class="n3"><if condition="$val.state eq 1"><img src="__PUBLIC__/images/tru.png">&nbsp;{$val.create_time|date="Y-m-d",###}</if></li> 
+             <li class="n4"><if condition="$val.state eq 2"><img src="__PUBLIC__/images/round.png">&nbsp;{$val.create_time|date="Y-m-d",###}</if></li>
+             <li class="n5"><if condition="$val.state eq 3"><img src="__PUBLIC__/images/err.png">&nbsp;{$val.create_time|date="Y-m-d",###}</if></li>
+           </ul>
+           </volist>
+       </div>
+
+
+      <div class="pagination">{$page}</div>
+
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

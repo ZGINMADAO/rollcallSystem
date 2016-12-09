@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+  <link type="text/css" href="__PUBLIC__/css/style.css" rel="stylesheet" />
+</head>
+<body>
+
+<div class="main">
+  <h3>勾选添加班级</h3>
+  <form method="post" action="{:U('Manage/addClass')}">
+  <div class="dm_list">
+    <ul class="dm_bt">
+      <li class="m1"></li>
+      <li class="m2">班级ID号</li>              
+      <li class="m3">班级名称</li>
+    </ul>
+    <volist name="list" id="vol">
+      <ul class="dm_nrli">
+        <li class="m1">
+          <input name="id[]" type="checkbox" value="{$vol.id}" <if condition="in_array($vol['id'],$classid) eq 'true'">checked</if> />
+        </li>
+        <li class="m2">{$vol.id}</li>
+        <li class="m3">{$vol.name}</li>
+          <input type="hidden" name="teacid" value="{$id}" >
+      </ul>
+    </volist>
+    <div style="width:96%; height:30px; margin:20px auto; text-align:center;">
+       <input type="submit" value="添加" class="A_btn">
+    </div>
+  </div>
+  </form>
+</div>
+</body>
+</html>

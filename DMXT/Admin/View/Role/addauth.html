@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8" />
+  <title>安徽职业技术学院——在线点名系统</title>
+  <link type="text/css" href="__PUBLIC__/css/style.css" rel="stylesheet" />
+  <script src="__PUBLIC__/js/jquery-1.9.1.min.js" language="javascript"></script>
+  <script type="text/javascript" src="__PUBLIC__/js/default.js"></script>
+</head>
+<style type="text/css">
+.dm_list li.m1{ width:5%;}	
+.dm_list li.m2{ width:15%;}	
+.dm_list li.m3{ width:25%;}		
+.dm_list li.m4{ width:25%;}		
+.dm_list li.m5{ width:10%;}		
+.dm_list li.m6{ width:10%;}
+.dm_list li.m7{ width:10%; *width:9%;}
+
+.teaDetail_add{
+   width:90%;
+   margin:30px auto 0 auto;
+   overflow:hidden;
+   line-height:30px;
+   text-align:center;
+   font-size:14px;
+   }
+.teaDetail_add b{ margin:0 15px; font-weight:normal;}
+.teaDetail_add b input{ margin-left:5px;}
+</style>
+
+<body>
+<div class="main">
+  <h3>角色列表</h3> 
+
+<!-- 添加角色 -->
+<div class="teaDetail_add">
+  <form method="post" id="blk" action="{:U('Role/addAuth')}">
+    <b>权限方法:<input type="text" class="A_text" id="role1" name="auth_fun"/></b>
+    <b>权限名称:<input type="text" class="A_text" id="role2" name="auth_name"/></b>
+    <b>父id:<input type="text" class="A_text" id="role3" name="auth_level"/></b>
+    <input type="hidden" name="auth_id"/>
+    <b><input type="submit" class="A_btn" onclick="return checkform()" value="添加"></b>
+  </form>
+</div>
+
+<form name="form1" method="post">
+  <div class="dm_main">
+    <div class="dm_content">
+      <div class="dm_list">
+        <ul class="dm_bt">
+          <li class="m1">id</li>
+          <li class="m3">权限方法</li>
+          <li class="m3">权限名称</li>
+          <li class="m4">父id</li>
+          <li class="m6">编&nbsp;辑</li>
+          <li class="m7">删&nbsp;除</li>
+        </ul>
+        
+        <volist name="listAll" id="vo">
+        <ul class="dm_nrli">
+        	<li class="m1">{$vo.id}</li>
+          <li class="m3" id="role">{$vo.name}</li>
+          <li class="m3" id="role">{$vo.title}</li>
+          <li class="m4">{$vo.level}</li>
+          <li class="m6"><a href="#" onclick="edit(this);"><img src="__PUBLIC__/images/edit.png"></a></li>
+        	<li class="m7"><a href="{:U('Role/authDel',array('id'=>$vo['id']))}" onclick="return confirm('您确定删除吗?此操作将不能恢复!')"><img src="__PUBLIC__/images/del.png"></a></li>
+        </ul>
+        </volist>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+<script type="text/javascript">
+function edit(obj) {
+  var auth_id=$(obj).parent().prev().prev().prev().prev().text();//遍历id
+  var auth_fun=$(obj).parent().prev().prev().prev().text();//遍历权限方法
+  var auth_name=$(obj).parent().prev().prev().text();//遍历权限名称
+  var auth_level=$(obj).parent().prev().text();//遍历父id
+  $("input[name='auth_name']").val(auth_name).css("display");
+  $("input[name='auth_fun']").val(auth_fun).css("display");
+  $("input[name='auth_level']").val(auth_level).css("display");
+  $("input[name='auth_id']").val(auth_id);
+  $("#blk").attr("action","{:U('Role/authEdit')}");
+  $("#blk").find(":submit").val("修改");
+}
+function checkform() {
+  if ($("#role1").val().length<2) {
+    alert('权限方法不少于两位');
+    $("#role1").focus();
+    return false;
+  }
+  if ($("#role2").val().length<2) {
+    alert('权限名称不少于两位');
+    $("#role2").focus();
+    return false;
+  }
+  if ($("#role3").val().length<1) {
+    alert('父id不少于一位');
+    $("#role3").focus();
+    return false;
+  }
+  return true;
+}
+</script>
+</body>
+</html>

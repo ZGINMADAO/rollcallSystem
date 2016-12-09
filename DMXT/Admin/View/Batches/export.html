@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>安徽职业技术学院——在线点名系统</title>
+  <link type="text/css" href="__PUBLIC__/css/style.css" rel="stylesheet" />
+  <script src="__PUBLIC__/js/jquery-1.9.1.min.js" language="javascript"></script>
+  <script src="__PUBLIC__/js/calendar.js" language="javascript"></script>
+</head>
+
+<style type="text/css">
+.dm_list li.n1{ width:5%;}	
+.dm_list li.n2{ width:7%;}	
+.dm_list li.n3{ width:15%;}		
+.dm_list li.n4{ width:15%;}		
+.dm_list li.n5{ width:7%;}		
+.dm_list li.n6{ width:15%;}
+.dm_list li.n7{ width:15%;}
+.dm_list li.n8{ width:15%;}
+.dm_list li.n9{ width:6%;}
+
+.export{width:96%; height:30px; margin:30px auto 10px auto; font-size:14px;}
+.export select{ width:160px; height:26px; margin:2px 1px 0px 1px;}
+.export b{ margin:0 10px; font-weight:normal;}
+.export b .A_text{ width:160px;}
+
+</style>
+<body>
+
+<div class="main">
+  <h3>导出信息</h3>
+  <div class="dm_main">
+    <div class="dm_content">
+    <!-- 下拉框 -->
+    <div class="export">
+    <form name="sta_form" method="get" style="float:left;"> 
+        <b>
+    	<select name="teacher">
+			<option value="">请选择教师：</option>
+			<volist name="tea_list" id="vol">
+			<option value="{$vol.user}" <if condition="$arr[0] eq $vol['user']">selected</if> >
+			{$vol.nikename}({$vol.user})
+			</option>
+			</volist>
+    	</select>
+        </b>
+        
+        <b>
+    	<select name="class">
+			<option value="">请选择班级：</option>
+			<volist name="cls_list" id="val">
+			<option value="{$val.name}" <if condition="$arr[1] eq $val['name']">selected</if>>{$val.name}</option>
+			</volist>
+    	</select>
+        </b>
+        <b>
+          起始日期：<input type="text" class="A_text" name="beginDate" id="" onclick="new Calendar().show(this);" readonly  value="{$begin_date}">
+        </b>
+        <b>
+          结束日期：<input type="text" class="A_text" name="overDate" id="" onclick="new Calendar().show(this);" readonly  value="{$over_date}">
+        </b> 
+        <b>
+    	   <input type="button" value="筛选" onclick="checkselect()" class="A_btn">
+        </b>
+    </form>
+    <a href="{:U('Batches/expUser')}" class=" button_blue" style="width:70px; height:28px; margin-left:10px; line-height:28px; float:left;">
+         <span class="view">导出</span>
+         <span class="hidden">导出</span>
+        </a>
+    </div>
+    
+    
+    
+    <form name="form1" method="get">
+    <div class="dm_list">
+      <ul class="dm_bt">
+        <li class="n2">序&nbsp;号</li>
+        <li class="n3">学&nbsp;号</li>
+         <li class="n4">姓&nbsp;名</li> 
+        <li class="n5">状&nbsp;态</li>
+        <li class="n6">班级名称</li>
+        <li class="n7">教&nbsp;师</li>
+        <li class="n8">点名时间</li>
+      </ul>
+      <!--遍历state表查询出的数据-->
+      <assign name="num" value="1" />
+      <volist name="state_list" id="vo">
+        <ul class="dm_nrli">
+          <li class="n2">{$num++}</li>
+          <li class="n3">{$vo.stu_id}</li>
+          <li class="n4">{$vo.stu_name}</li> 
+          <li class="n5">{$vo.state}</li>
+          <li class="n6">{$vo.class_name}</li>
+          <li class="n7">{$vo.teacher_name}</li>
+          <li class="n8">{$vo.create_time|date="Y-m-d",###}</li>
+        </ul>
+      </volist>
+    </div>
+    </form>
+  </div>
+  
+  <!--分页-->
+  <div class="pagination">{$page}</div>
+    
+</div>
+
+
+
+<script type="text/javascript">
+function checkselect() {
+  
+  if($("[name=beginDate]").val().length>1||$("[name=overDate]").val().length>1) {
+    if($("[name=beginDate]").val().length<1||$("[name=overDate]").val().length<1) {
+      alert('日期请同时选择起始日期与结束日期，否则不选');
+      return false;
+    }
+  }
+  if($("[name=beginDate]").val().length>1&&$("[name=overDate]").val().length>1) {
+    if(Date.parse($("[name=beginDate]").val())>Date.parse($("[name=overDate]").val())) {
+      alert('起始日期不能大于结束日期');
+      return false;
+    }
+  }
+	document.sta_form.action="{:U('Batches/selectState')}";
+	document.sta_form.submit();
+}
+</script>
+</body>
+</html>

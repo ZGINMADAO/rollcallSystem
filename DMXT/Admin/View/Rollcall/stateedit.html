@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>安徽职业技术学院——在线点名系统</title>
+  <link type="text/css" href="__PUBLIC__/css/style.css" rel="stylesheet" />
+  <script src="__PUBLIC__/js/jquery-1.9.1.min.js" language="javascript"></script>
+</head>
+
+<style type="text/css">
+.dm_list li.n1{ width:5%;}	
+.dm_list li.n2{ width:7%;}	
+.dm_list li.n3{ width:15%;}		
+.dm_list li.n4{ width:15%;}		
+.dm_list li.n5{ width:7%;}		
+.dm_list li.n6{ width:15%;}
+.dm_list li.n7{ width:15%;}
+.dm_list li.n8{ width:15%;}
+.dm_list li.n9{ width:6%;}
+
+input.stueidt{
+	width:190px;
+	padding:5px;
+	height:22px;
+	outline:none;
+	border:1px solid #dadada;
+	color:#444;
+	font-size:16px;
+	}
+.tearch_name p{ padding:12px 0; font-size:16px;}
+</style>
+<body>
+<div class="main">
+  <h3>学生上课状态修改</h3>
+  <div class="dm_main">
+    <div class="dm_content">
+    <div style="width:90%; margin:30px auto; overflow:hidden;">
+      
+      
+    </div>
+    <div class="dm_list">
+      <ul class="dm_bt">
+        <li class="n2">序&nbsp;号</li>
+        <li class="n3">点名时间</li>
+        <li class="n4">姓&nbsp;名</li> 
+        <li class="n5">状&nbsp;态</li>
+        <li class="n6">选择状态</li>
+        <li class="n7">教&nbsp;师</li>
+      </ul>
+      <assign name="num" value="1" />
+      <volist name="stateList" id="vo">
+      <ul class="dm_nrli">
+        <li class="n2">{$num++}</li>
+        <li class="n3">{$vo.create_time|date="Y-m-d",###}</li>
+        <li class="n4">{$vo.stu_name}</li> 
+        <li class="n5">
+          <if condition="$vo.state eq 1"><span>已到</span>
+          <elseif condition="$vo.state eq 2"/><span style="color:#3399FF">请假</span>
+          <elseif condition="$vo.state eq 3"/><span style="color:red"> 旷课</span>
+          </if>
+        </li>
+        <li class="n6">
+        <input type="hidden" name="hiddenId" value="{$vo.id}">
+      		<select name="stu_state" id="sele">
+	            <option value="">状态选择</option>
+	            <option value="1">已到</option>
+	            <option value="2">请假</option>
+	            <option value="3">旷课</option>
+        	</select>
+        </li>
+        <li class="n7">{$vo.teacher_name}({$vo.tea_no})</li>
+      </ul>
+      </volist>
+    </div>
+  </div>
+<!--分页-->
+<div class="pagination">{$page}</div>
+</div>
+</body>
+<script type="text/javascript">
+$(function(){
+  $("select[name='stu_state']").change(function(){
+    $.ajax({
+      url:"{:U('Rollcall/edit')}",
+      data:{
+        hiddenId:$(this).prev().val(),
+        stu_state:$(this, "option:selected").val() //指定到每个select
+      },
+      success:function(msg){
+        // console.log(msg);
+        alert(msg);
+        window.location.reload();
+      }
+    });
+  });
+});
+</script>
+</html>
